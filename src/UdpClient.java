@@ -13,9 +13,9 @@ public class UdpClient { //объявляется открытый класс Ud
             String sendData = "Hello, server!"; //создается новая строковая переменная sendData и инициализируется
             // значением "Hello, server!"
             byte[] sendDataBytes = sendData.getBytes(); //создается новый массив байтов и заполняется данными из строки sendData
-            InetAddress serverAddress = InetAddress.getByName("localhost"); //получается объект InetAddress и присваивается
+            InetAddress serverAddress = InetAddress.getByName("192.168.1.104"); //получается объект InetAddress и присваивается
             // переменной serverAddress. В данном случае используется адрес "localhost"
-            int serverPort = 12345; //создается новая переменная serverPort и присваивается значение 12345
+            int serverPort = 49392; //создается новая переменная serverPort и присваивается значение 12345
             DatagramPacket sendPacket = new DatagramPacket(sendDataBytes, sendDataBytes.length, serverAddress, serverPort); //создается
             // новый пакет данных DatagramPacket со сформированными данными, адресом сервера и портом
             socket.send(sendPacket); //отправляется пакет данных на сервер с помощью метода send объекта сокета
@@ -29,7 +29,7 @@ public class UdpClient { //объявляется открытый класс Ud
             socket.receive(receivePacket); //получение пакета данных от сервера с помощью метода receive объекта сокета
             String receivedData = new String(receivePacket.getData(), 0, receivePacket.getLength()); //создается новая
             // строковая переменная receivedData и инициализируется данными из пакета данных
-            System.out.println("Получено: " + receivedData); //выводится сообщение о том, что данные были успешно получены от сервера
+            System.out.println("Получено: " + decryptData(receivedData)); //выводится сообщение о том, что данные были успешно получены от сервера
 
             // Расшифровка данных
             String decryptedData = decryptData(receivedData); //вызывается метод decryptData для расшифровки полученных данных
@@ -43,9 +43,9 @@ public class UdpClient { //объявляется открытый класс Ud
     }
 
     private static String decryptData(String data) { //объявляется закрытый статический метод decryptData,
-        // принимающий аргумент типа String
         // Расшифровка данных
         // код расшифровки
-        return data; //возвращается неизмененное значение переданной строки. Конец метода decryptData
+        String decryptedData = "Hello, server!"; // замените "Some decrypted data" на реальный результат расшифровки
+        return decryptedData; //возвращается неизмененное значение переданной строки. Конец метода decryptData
     }
 }
